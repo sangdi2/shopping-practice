@@ -9,11 +9,11 @@
     <!-- 中间的合计 -->
     <div>
       <span>合计：</span>
-      <span class="total-price">￥{{ 0 }}</span>
+      <span class="total-price">￥{{ price }}</span>
     </div>
 
     <!-- 结算按钮 -->
-    <button type="button" class="btn btn-primary btn-settle">结算（{{ 0 }}）</button>
+    <button type="button" class="btn btn-primary btn-settle">结算（{{ total }}）</button>
   </div>
 </template>
 
@@ -23,6 +23,14 @@ export default {
     isfull:{
       default:false,
       type:Boolean
+    },
+    price:{
+      default:0,
+      type:Number
+    },
+    total:{
+      default:0,
+      type:Number
     }
   },
   methods:{

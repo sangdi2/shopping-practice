@@ -19,13 +19,19 @@
         <!-- 商品价格 -->
         <span class="goods-price">￥{{pirce}}</span>
         <!-- 商品的数量 -->
+        <Counter :amount="count" :id="id"></Counter>
       </div>
     </div>
+    
   </div>
 </template>
 
 <script>
+import Counter from '../Counter/Counter.vue'
 export default {
+  components:{
+    Counter
+  },
   methods:{
     
     getstate(e){
@@ -53,6 +59,10 @@ export default {
     state:{
       default:true,
       type:Boolean
+    },
+    count:{
+      default:1,
+      type:Number
     }
   }
 }
