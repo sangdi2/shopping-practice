@@ -4,7 +4,7 @@
     <div class="thumb">
       <div class="custom-control custom-checkbox">
         <!-- 复选框 -->
-        <input type="checkbox" class="custom-control-input" id="cb1" :checked="state" />
+        <input type="checkbox" class="custom-control-input" id="cb1" :checked="state" @change="getstate"/>
         <label class="custom-control-label" for="cb1">
           <!-- 商品的缩略图 -->
           <img :src="pic" alt="" />
@@ -26,6 +26,13 @@
 
 <script>
 export default {
+  methods:{
+    
+    getstate(e){
+      console.log(e)
+       this.$emit('getstate',{id:this.id,value:e.target.checked})
+    }
+  },
   props:{
     id:{
       required:true,

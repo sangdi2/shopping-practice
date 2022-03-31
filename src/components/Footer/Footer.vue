@@ -2,7 +2,7 @@
   <div class="footer-container">
     <!-- 左侧的全选 -->
     <div class="custom-control custom-checkbox">
-      <input type="checkbox" class="custom-control-input" id="cbFull" :checked="true" />
+      <input type="checkbox" class="custom-control-input" id="cbFull" :checked="isfull" @change="fullstate"/>
       <label class="custom-control-label" for="cbFull">全选</label>
     </div>
 
@@ -18,7 +18,19 @@
 </template>
 
 <script>
-export default {}
+export default {
+  props:{
+    isfull:{
+      default:false,
+      type:Boolean
+    }
+  },
+  methods:{
+    fullstate(e){
+      this.$emit('full',e.target.checked)
+    }
+  }
+}
 </script>
 
 <style lang="less" scoped>

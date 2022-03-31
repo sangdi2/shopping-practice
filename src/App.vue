@@ -6,8 +6,9 @@
     :pirce="item.goods_price"
     :state="item.goods_state"
     :id="item.id"
+    @getstate="getcheck"
     ></Goods>
-
+     <Footer :isfull="isfull" @full="getfull"></Footer>
   </div>
 </template>
 
@@ -15,6 +16,7 @@
 import Header from './components/Header/Header.vue'
 import axios from 'axios'
 import Goods from './components/Goods/Goods.vue'
+import Footer from './components/Footer/Footer.vue'
 export default {
   data(){
     return {
@@ -28,14 +30,32 @@ export default {
      if(res.status==200){
        this.list=res.list
      }
+     },
+     getcheck(val){
+        console.log(val)
+        this.list.some(item=>{
+          if(item.id==val.id){
+            console.log('ok')
+            item.goods_state=val.value
+          }
+        })
+     },
+     getfull(v){
+       this.list.forEach(item=>(item.goods_state=v))
      }
+  },
+  computed:{
+    isfull(){
+      return this.list.every(item=>(item.goods_state))
+    }
   },
   created(){
      this.initcart()
   },
   components:{
     Header,
-    Goods
+    Goods,
+    Footer
   }
 }
 </script>
